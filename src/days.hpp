@@ -40,7 +40,8 @@ enum class Part { Part1, Part2, Num };
 template<Day day, Part part> void solveProblem()
 {
   auto const humanReadableDay = static_cast<unsigned int>(day) + 1u;
-  spdlog::info("solving day {} part {}", humanReadableDay, part);
+  auto const humanReadablePart = static_cast<unsigned int>(part) + 1u;
+  spdlog::info("solving day {} part {}", humanReadableDay, humanReadablePart);
 
   auto const inputFileName = fmt::format("input{}.txt", humanReadableDay);
   std::ifstream rfile(inputFileName);
@@ -54,7 +55,7 @@ template<Day day, Part part> void solveProblem()
       std::chrono::duration_cast<std::chrono::microseconds>(finish - start);
     spdlog::info("+solved day {} part {} in {} microseconds",
       humanReadableDay,
-      part,
+      humanReadablePart,
       microseconds.count());
   } else {
     spdlog::error("the input file for day {} does not exist", humanReadableDay);
