@@ -1,10 +1,15 @@
 #include "days.hpp"
 
-static constexpr days::Day CurrentDay = days::Day::Day2;
+static constexpr days::day current_day = days::day::day_3;
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] const char **argv)
+auto main([[maybe_unused]] int argc, [[maybe_unused]] const char **argv) -> int
 {
   spdlog::info("Advent of Code 2020");
-  days::solveProblem<CurrentDay, days::Part::Part1>();
-  days::solveProblem<CurrentDay, days::Part::Part2>();
+
+  days::solve_problem<days::day::day_1, days::part::part_1>();
+  days::solve_problem<days::day::day_1, days::part::part_2>();
+  days::solve_problem<days::day::day_2, days::part::part_1>();
+  days::solve_problem<days::day::day_2, days::part::part_2>();
+  days::solve_problem<current_day, days::part::part_1>();
+  days::solve_problem<current_day, days::part::part_2>();
 }

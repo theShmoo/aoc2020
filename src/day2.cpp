@@ -4,7 +4,7 @@
 
 #include "lexical_cast.hpp"
 
-struct Policy
+struct policy
 {
   std::string password;
   int min;
@@ -12,15 +12,15 @@ struct Policy
   char letter;
 };
 
-std::vector<Policy> parseDay(std::istream &input)
+std::vector<policy> parse_day(std::istream &input)
 {
-  std::vector<Policy> policies;
+  std::vector<policy> policies;
 
-  std::regex r = std::regex("([0-9]+)-([0-9]+) ([a-z]): ([a-z]+)");
+  auto const r = std::regex("([0-9]+)-([0-9]+) ([a-z]): ([a-z]+)");
   std::smatch m;
   for (std::string line; std::getline(input, line);) {
     std::regex_match(line, m, r);
-    Policy p;
+    policy p;
     p.min = utils::lexical_cast<int>(m[1].str());
     p.max = utils::lexical_cast<int>(m[2].str());
     p.letter = m[3].str().at(0);
@@ -31,31 +31,31 @@ std::vector<Policy> parseDay(std::istream &input)
 }
 
 template<>
-void days::solve<days::Day::Day2, days::Part::Part1>(std::istream &input,
-  std::ostream &output)
+auto days::solve<days::day::day_2, days::part::part_1>(std::istream &input)
+  -> std::string
 {
-  auto policies = parseDay(input);
+  auto policies = parse_day(input);
 
-  auto const numOk = ranges::count_if(policies, [](const auto p) {
+  auto const num_ok = ranges::count_if(policies, [](const auto p) {
     auto const num = ranges::count(p.password, p.letter);
     return num >= p.min && num <= p.max;
   });
 
-  output << numOk << "\n";
+  return std::to_string(num_ok);
 }
 
 template<>
-void days::solve<days::Day::Day2, days::Part::Part2>(std::istream &input,
-  std::ostream &output)
+auto days::solve<days::day::day_2, days::part::part_2>(std::istream &input)
+  -> std::string
 {
-  auto policies = parseDay(input);
+  auto policies = parse_day(input);
 
-  auto const numOk = ranges::count_if(policies, [](const auto p) {
+  auto const num_ok = ranges::count_if(policies, [](const auto p) {
     return (p.letter == p.password[p.min - 1]
              && p.letter != p.password[p.max - 1])
            || (p.letter != p.password[p.min - 1]
                && p.letter == p.password[p.max - 1]);
   });
 
-  output << numOk << "\n";
+  return std::to_string(num_ok);
 }

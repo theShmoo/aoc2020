@@ -5,9 +5,7 @@
 #include <range/v3/all.hpp>
 #include <span>
 
-void solveDay(unsigned int const comb_size,
-  std::istream &input,
-  std::ostream &output)
+auto solve_day(unsigned int const comb_size, std::istream &input) -> int
 {
   auto expanses = ranges::istream_view<int>(input) | ranges::to<std::vector>();
   ranges::sort(expanses);
@@ -20,19 +18,19 @@ void solveDay(unsigned int const comb_size,
   auto found = ranges::find_if(combinations,
     [](auto const &comb) { return ranges::accumulate(comb, 0) == 2020; });
   auto const result = *found;
-  output << ranges::accumulate(result, 1, std::multiplies<int>{}) << "\n";
+  return ranges::accumulate(result, 1, std::multiplies<int>{});
 }
 
 template<>
-void days::solve<days::Day::Day1, days::Part::Part1>(std::istream &input,
-  std::ostream &output)
+auto days::solve<days::day::day_1, days::part::part_1>(std::istream &input)
+  -> std::string
 {
-  solveDay(2, input, output);
+  return std::to_string(solve_day(2, input));
 }
 
 template<>
-void days::solve<days::Day::Day1, days::Part::Part2>(std::istream &input,
-  std::ostream &output)
+auto days::solve<days::day::day_1, days::part::part_2>(std::istream &input)
+  -> std::string
 {
-  solveDay(3, input, output);
+  return std::to_string(solve_day(3, input));
 }
