@@ -2,34 +2,52 @@
 
 #include <range/v3/all.hpp>
 
-struct t
+struct slope
 {
+  unsigned int col;
+  unsigned int row;
 };
 
-std::vector<t> parse_day(std::istream &input)
+auto num_trees_in_slope(const slope slope,
+  const std::vector<std::string> &lines) -> unsigned int
 {
-  std::vector<t> result;
-
-  auto const r = std::regex("([0-9]+)-([0-9]+) ([a-z]): ([a-z]+)");
-  std::smatch m;
-  for (std::string line; std::getline(input, line);) {
-    std::regex_match(line, m, r);
+  unsigned int trees = 0;
+  unsigned int col = 0;
+  for (unsigned int row = 0; row < lines.size(); row += slope.row) {
+    auto const &line = lines[row];
+    auto const l = line.at(col % line.size());
+    if (l == '#') trees++;
+    col += slope.col;
   }
-  return result;
+  return trees;
 }
 
 template<>
 auto days::solve<days::day::day_3, days::part::part_1>(std::istream &input)
   -> std::string
 {
-  auto parsed = parse_day(input);
-  return {};
+  auto lines =
+    ranges::istream_view<std::string>(input) | ranges::to<std::vector>();
+  auto const trees = num_trees_in_slope({ 3, 1 }, lines);
+  return std::to_string(trees);
 }
 
 template<>
 auto days::solve<days::day::day_3, days::part::part_2>(std::istream &input)
   -> std::string
 {
-  auto parsed = parse_day(input);
-  return {};
+  auto lines =
+    ranges::istream_view<std::string>(input) | ranges::to<std::vector>();
+
+  std::array<slope, 5> slopes{
+    slope{ 1, 1 }, slope{ 3, 1 }, slope{ 5, 1 }, slope{ 7, 1 }, slope{ 1, 2 }
+  };
+  auto const result = ranges::accumulate(
+    slopes | ranges::views::transform([&lines](auto const slope) {
+      return num_trees_in_slope(slope, lines);
+    }),
+    1,
+    std::multiplies<>{});
+
+  return std::to_string(result);
 }
