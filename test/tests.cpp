@@ -90,3 +90,24 @@ TEST_CASE("Day 4 Part 2", "[days]")
   std::cout << out_wrong;
   REQUIRE(out_wrong == "0");
 }
+
+TEST_CASE("Day 5 Part 1 - 1", "[days]")
+{
+  std::stringstream ss{ "BFFFBBFRRR" };
+  auto const out = days::solve<days::day::day_5, days::part::part_1>(ss);
+  REQUIRE(out == "567");
+}
+
+TEST_CASE("Day 5 Part 1 - 2", "[days]")
+{
+  std::stringstream ss{ "FFFBBBFRRR" };
+  auto const out = days::solve<days::day::day_5, days::part::part_1>(ss);
+  REQUIRE(out == "119");
+}
+
+TEST_CASE("Day 5 Part 1 - 3", "[days]")
+{
+  std::stringstream ss{ "BBFFBBFRLL" };
+  auto const out = days::solve<days::day::day_5, days::part::part_1>(ss);
+  REQUIRE(out == "820");
+}
