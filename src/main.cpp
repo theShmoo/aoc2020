@@ -1,6 +1,6 @@
 #include "days.hpp"
 
-static constexpr days::day current_day = days::day::day_5;
+static constexpr days::day current_day = days::day::day_6;
 
 auto main([[maybe_unused]] int argc, [[maybe_unused]] const char **argv) -> int
 {
