@@ -111,3 +111,17 @@ TEST_CASE("Day 5 Part 1 - 3", "[days]")
   auto const out = days::solve<days::day::day_5, days::part::part_1>(ss);
   REQUIRE(out == "820");
 }
+
+TEST_CASE("Day 6 Part 1", "[days]")
+{
+  std::stringstream ss{ "abc\n\na\nb\nc\n\nab\nac\n\na\na\na\na\n\nb" };
+  auto const out = days::solve<days::day::day_6, days::part::part_1>(ss);
+  REQUIRE(out == "11");
+}
+
+TEST_CASE("Day 6 Part 2", "[days]")
+{
+  std::stringstream ss{ "abc\n\na\nb\nc\n\nab\nac\n\na\na\na\na\n\nb" };
+  auto const out = days::solve<days::day::day_6, days::part::part_2>(ss);
+  REQUIRE(out == "6");
+}
