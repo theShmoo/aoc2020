@@ -1,13 +1,15 @@
 #include "days.hpp"
 #include "combination_utils.hpp"
+#include "input_utils.hpp"
 
 #include <vector>
 #include <range/v3/all.hpp>
 #include <span>
 
+
 auto solve_day(unsigned int const comb_size, std::istream &input) -> int
 {
-  auto expanses = ranges::istream_view<int>(input) | ranges::to<std::vector>();
+  auto expanses = utils::split<int>(input);
   ranges::sort(expanses);
   auto lazyCombo = [expanses, comb_size]() mutable {
     utils::next_combination(

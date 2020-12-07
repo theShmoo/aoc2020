@@ -1,5 +1,7 @@
 #include "days.hpp"
 
+#include "input_utils.hpp"
+
 #include <range/v3/all.hpp>
 
 struct slope
@@ -26,8 +28,7 @@ template<>
 auto days::solve<days::day::day_3, days::part::part_1>(std::istream &input)
   -> std::string
 {
-  auto lines =
-    ranges::istream_view<std::string>(input) | ranges::to<std::vector>();
+  auto const lines = utils::split(input);
   auto const trees = num_trees_in_slope({ 3, 1 }, lines);
   return std::to_string(trees);
 }
@@ -36,9 +37,7 @@ template<>
 auto days::solve<days::day::day_3, days::part::part_2>(std::istream &input)
   -> std::string
 {
-  auto lines =
-    ranges::istream_view<std::string>(input) | ranges::to<std::vector>();
-
+  auto const lines = utils::split(input);
   std::array<slope, 5> slopes{
     slope{ 1, 1 }, slope{ 3, 1 }, slope{ 5, 1 }, slope{ 7, 1 }, slope{ 1, 2 }
   };
@@ -46,7 +45,7 @@ auto days::solve<days::day::day_3, days::part::part_2>(std::istream &input)
     slopes | ranges::views::transform([&lines](auto const slope) {
       return num_trees_in_slope(slope, lines);
     }),
-    1,
+    1u,
     std::multiplies<>{});
 
   return std::to_string(result);
