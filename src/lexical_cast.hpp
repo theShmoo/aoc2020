@@ -4,8 +4,7 @@
 
 namespace utils {
 // tries to parse the input stream as a T
-template<typename T>
-inline std::optional<T> try_lexical_cast(std::istream &ss)
+template<typename T> std::optional<T> try_lexical_cast(std::istream &ss)
 {
   T t;
   if ((ss >> t).fail() || !(ss >> std::ws).eof()) {
@@ -15,8 +14,7 @@ inline std::optional<T> try_lexical_cast(std::istream &ss)
 }
 
 // tries to parse the string as a T
-template<typename T>
-inline std::optional<T> try_lexical_cast(std::string_view s)
+template<typename T> std::optional<T> try_lexical_cast(std::string_view s)
 {
   std::stringstream ss{ std::string(s) };
   return try_lexical_cast<T>(ss);
@@ -36,8 +34,7 @@ inline std::optional<bool> try_lexical_cast(std::string_view s)
 
 // tries to parse the input stream as a T
 // throws an exception if it fails.
-template<typename T>
-inline T lexical_cast(std::istream &ss)
+template<typename T> T lexical_cast(std::istream &ss)
 {
   auto result = try_lexical_cast<T>(ss);
   if (!result) {
@@ -47,8 +44,7 @@ inline T lexical_cast(std::istream &ss)
 }
 // tries to parse the input string as a T
 // throws an exception if it fails.
-template<typename T>
-inline T lexical_cast(std::string_view s)
+template<typename T> T lexical_cast(std::string_view s)
 {
   auto result = try_lexical_cast<T>(s);
   if (!result) {
