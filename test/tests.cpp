@@ -173,14 +173,36 @@ TEST_CASE("Day 7 Part 2 - 2", "[days]")
 
 TEST_CASE("Day 8 Part 1", "[days]")
 {
-  std::stringstream ss{ "nop +0\nacc +1\njmp +4\nacc +3\njmp -3\nacc -99\nacc +1\njmp -4\nacc +6" };
+  std::stringstream ss{
+    "nop +0\nacc +1\njmp +4\nacc +3\njmp -3\nacc -99\nacc +1\njmp -4\nacc +6"
+  };
   auto const out = days::solve<days::day::day_8, days::part::part_1>(ss);
   REQUIRE(out == "5");
 }
 
 TEST_CASE("Day 8 Part 2", "[days]")
 {
-  std::stringstream ss{ "nop +0\nacc +1\njmp +4\nacc +3\njmp -3\nacc -99\nacc +1\njmp -4\nacc +6" };
+  std::stringstream ss{
+    "nop +0\nacc +1\njmp +4\nacc +3\njmp -3\nacc -99\nacc +1\njmp -4\nacc +6"
+  };
   auto const out = days::solve<days::day::day_8, days::part::part_2>(ss);
+  REQUIRE(out == "8");
+}
+
+TEST_CASE("Day 9 Part 1", "[days]")
+{
+  std::stringstream ss{
+    ""
+  };
+  auto const out = days::solve<days::day::day_9, days::part::part_1>(ss);
+  REQUIRE(out == "5");
+}
+
+TEST_CASE("Day 9 Part 2", "[days]")
+{
+  std::stringstream ss{
+    ""
+  };
+  auto const out = days::solve<days::day::day_9, days::part::part_2>(ss);
   REQUIRE(out == "8");
 }

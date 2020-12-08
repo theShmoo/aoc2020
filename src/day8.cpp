@@ -24,20 +24,19 @@ auto parse_instructions(std::istream &input) -> instructions
 {
   instructions instructions;
   std::string op_str;
-  std::string val_str;
+  int val;
 
-  while (input >> op_str && input >> val_str) {
+  while (input >> op_str && input >> val) {
     auto const op = static_cast<instruction::operation>(
       std::distance(ops.begin(), ranges::find(ops, op_str)));
-    instruction inst{ op, utils::lexical_cast<int>(val_str) };
-    instructions.push_back(inst);
+    instructions.push_back({ op, val });
   }
   return instructions;
 }
 
 auto run_instructions(const instructions &instructions) -> std::pair<int, bool>
 {
-  int accumulator = 0;
+  auto accumulator = 0;
   size_t current_pos = 0;
   std::vector<bool> already_run(instructions.size(), false);
   while (current_pos < instructions.size() && already_run[current_pos] == false) {
@@ -76,7 +75,7 @@ auto days::solve<days::day::day_8, days::part::part_2>(std::istream &input)
   -> std::string
 {
   auto instructions = parse_instructions(input);
-  int accumulator = 0;
+  auto accumulator = 0;
   for (size_t n = 0; n < instructions.size(); ++n) {
     if (instructions[n].op == instruction::operation::nop) {
       instructions[n].op = instruction::operation::jmp;
