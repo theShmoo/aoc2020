@@ -13,6 +13,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            COMPILER: clang
+            LINKER: clang
 
     steps:
     - uses: actions/checkout@v2
