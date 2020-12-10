@@ -37,7 +37,6 @@ enum class day {
 };
 enum class part { part_1 = 1, part_2, num };
 
-
 template<day Day, part Part>
 extern auto solve(std::istream &input) -> std::string;
 

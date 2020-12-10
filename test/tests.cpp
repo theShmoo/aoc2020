@@ -2,6 +2,7 @@
 #include <catch2/catch.hpp>
 
 #include "days.hpp"
+#include "day9.hpp"
 
 
 TEST_CASE("Day 1 Part 1", "[days]")
@@ -195,7 +196,7 @@ TEST_CASE("Day 9 Part 1", "[days]")
     "35\n20\n15\n25\n47\n40\n62\n55\n65\n95\n102\n117\n150\n182\n127\n219\n299"
     "\n277\n309\n576"
   };
-  auto const out = days::solve<days::day::day_9, days::part::part_1>(ss);
+  auto const out = preamble_finder<5>::solve_part1(ss);
   REQUIRE(out == "127");
 }
 
@@ -206,6 +207,40 @@ TEST_CASE("Day 9 Part 2", "[days]")
     "\n277\n309\n576"
 
   };
-  auto const out = days::solve<days::day::day_9, days::part::part_2>(ss);
+  auto const out = preamble_finder<5>::solve_part2(ss);
   REQUIRE(out == "62");
+}
+
+TEST_CASE("Day 10 Part 1 - 1", "[days]")
+{
+  std::stringstream ss{ "16\n10\n15\n5\n1\n11\n7\n19\n6\n12\n4" };
+  auto const out = days::solve<days::day::day_10, days::part::part_1>(ss);
+  REQUIRE(out == "35");
+}
+
+TEST_CASE("Day 10 Part 1 - 2", "[days]")
+{
+  std::stringstream ss{
+    "28\n33\n18\n42\n31\n14\n46\n20\n48\n47\n24\n23\n49\n45\n19\n38\n39\n11\n1"
+    "\n32\n25\n35\n8\n17\n7\n9\n4\n2\n34\n10\n3"
+  };
+  auto const out = days::solve<days::day::day_10, days::part::part_1>(ss);
+  REQUIRE(out == "220");
+}
+
+TEST_CASE("Day 10 Part 2 - 1", "[days]")
+{
+  std::stringstream ss{ "16\n10\n15\n5\n1\n11\n7\n19\n6\n12\n4" };
+  auto const out = days::solve<days::day::day_10, days::part::part_2>(ss);
+  REQUIRE(out == "8");
+}
+
+TEST_CASE("Day 10 Part 2 - 2", "[days]")
+{
+  std::stringstream ss{
+    "28\n33\n18\n42\n31\n14\n46\n20\n48\n47\n24\n23\n49\n45\n19\n38\n39\n11\n1"
+    "\n32\n25\n35\n8\n17\n7\n9\n4\n2\n34\n10\n3"
+  };
+  auto const out = days::solve<days::day::day_10, days::part::part_2>(ss);
+  REQUIRE(out == "19208");
 }

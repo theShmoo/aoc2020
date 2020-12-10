@@ -13,6 +13,7 @@ add_executable(tests tests.cpp)
 target_link_libraries(tests PRIVATE project_warnings project_options
           catch_main
           ${PROJECT_NAME}
+          CONAN_PKG::range-v3
           CONAN_PKG::fmt
           CONAN_PKG::spdlog)
 target_include_directories(tests PUBLIC ../src)
