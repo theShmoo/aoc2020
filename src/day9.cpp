@@ -38,8 +38,8 @@ auto find_wrong_number(std::vector<int> const &numbers) -> auto
   preamble preamble{};
   std::copy_n(numbers.begin(), preamble_size, preamble.begin());
   size_t current_pos = 0;
-  auto const found = std::find_if(numbers.begin() + preamble_size,
-    numbers.end(),
+  auto const found =
+    ranges::find_if(numbers | ranges::views::drop(preamble_size),
     [&preamble, &current_pos](
       const int value) { return find_pair(preamble, current_pos, value); });
   return found;
@@ -63,12 +63,10 @@ auto days::solve<days::day::day_9, days::part::part_2>(std::istream &input)
 
   std::deque<int> range{};
   auto sum = 0;
-  auto range_end = std::find_if(begin(numbers),
-    end(numbers),
-    [found, &sum, &range](auto const num) {
+  auto range_end =
+    ranges::find_if(numbers, [found, &sum, &range](auto const num) {
       sum += num;
       range.push_back(num);
-      if (found == sum) { return true; }
       while (sum > found) {
         auto const f = range.front();
         sum -= f;
