@@ -244,3 +244,23 @@ TEST_CASE("Day 10 Part 2 - 2", "[days]")
   auto const out = days::solve<days::day::day_10, days::part::part_2>(ss);
   REQUIRE(out == "19208");
 }
+
+TEST_CASE("Day 11 Part 1", "[days]")
+{
+  std::stringstream ss{
+    "L.LL.LL.LL\nLLLLLLL.LL\nL.L.L..L..\nLLLL.LL.LL\nL.LL.LL.LL\nL.LLLLL.LL\n.."
+    "L.L.....\nLLLLLLLLLL\nL.LLLLLL.L\nL.LLLLL.LL"
+  };
+  auto const out = days::solve<days::day::day_11, days::part::part_1>(ss);
+  REQUIRE(out == "37");
+}
+
+TEST_CASE("Day 11 Part 2", "[days]")
+{
+  std::stringstream ss{
+    "L.LL.LL.LL\nLLLLLLL.LL\nL.L.L..L..\nLLLL.LL.LL\nL.LL.LL.LL\nL.LLLLL.LL\n.."
+    "L.L.....\nLLLLLLLLLL\nL.LLLLLL.L\nL.LLLLL.LL"
+  };
+  auto const out = days::solve<days::day::day_11, days::part::part_2>(ss);
+  REQUIRE(out == "26");
+}
