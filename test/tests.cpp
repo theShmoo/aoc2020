@@ -264,3 +264,23 @@ TEST_CASE("Day 11 Part 2", "[days]")
   auto const out = days::solve<days::day::day_11, days::part::part_2>(ss);
   REQUIRE(out == "26");
 }
+
+TEST_CASE("Day 14 Part 1", "[days]")
+{
+  std::stringstream ss{
+    "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X\nmem[8] = 11\nmem[7] = "
+    "101\nmem[8] = 0"
+  };
+  auto const out = days::solve<days::day::day_14, days::part::part_1>(ss);
+  REQUIRE(out == "165");
+}
+
+TEST_CASE("Day 14 Part 2", "[days]")
+{
+  std::stringstream ss{
+    "mask = 000000000000000000000000000000X1001X\nmem[42] = 100\nmask = "
+    "00000000000000000000000000000000X0XX\nmem[26] = 1"
+  };
+  auto const out = days::solve<days::day::day_14, days::part::part_2>(ss);
+  REQUIRE(out == "208");
+}
