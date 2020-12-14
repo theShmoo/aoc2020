@@ -265,6 +265,19 @@ TEST_CASE("Day 11 Part 2", "[days]")
   REQUIRE(out == "26");
 }
 
+TEST_CASE("Day 13 Part 1", "[days]")
+{
+  std::stringstream ss{ "939\n7,13,x,x,59,x,31,19" };
+  auto const out = days::solve<days::day::day_13, days::part::part_1>(ss);
+  REQUIRE(out == "295");
+}
+
+TEST_CASE("Day 13 Part 2", "[days]")
+{
+  std::stringstream ss{ "939\n7,13,x,x,59,x,31,19" };
+  auto const out = days::solve<days::day::day_13, days::part::part_2>(ss);
+  REQUIRE(out == "295");
+}
 TEST_CASE("Day 14 Part 1", "[days]")
 {
   std::stringstream ss{
